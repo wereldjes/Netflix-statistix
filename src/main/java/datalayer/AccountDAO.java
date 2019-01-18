@@ -68,6 +68,19 @@ public class AccountDAO implements IAccount {
 
     @Override
     public void deleteAccount(Account a) {
+        Connection con = null;
+        String query = "DELETE FROM account WHERE account_id = ?";
+
+        try {
+            con = MysqlConnector.getInstance().connect();
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, a.getAccountID());
+
+            st.execute();
+            st.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
