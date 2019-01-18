@@ -1,6 +1,6 @@
 package datalayerInterface;
 
-import main.java.model.Movie;
+import model.Movie;
 
 import java.util.List;
 

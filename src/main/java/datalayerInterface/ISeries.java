@@ -1,6 +1,6 @@
 package datalayerInterface;
 
-import main.java.model.Series;
+import model.Series;
 import java.util.List;
 
 public interface ISeries {

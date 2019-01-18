@@ -1,6 +1,6 @@
 package datalayerInterface;
 
-import main.java.model.Episode;
+import model.Episode;
 import java.util.List;
 
 public interface IEpisode {

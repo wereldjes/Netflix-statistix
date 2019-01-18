@@ -1,6 +1,6 @@
 package model;
 
-public class Movie extends main.java.model.Program {
+public class Movie extends Program {
 
     private String genre;
     private String language;

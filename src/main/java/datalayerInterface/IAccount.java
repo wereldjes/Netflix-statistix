@@ -1,6 +1,6 @@
 package datalayerInterface;
 
-import main.java.model.Account;
+import model.Account;
 
 public interface IAccount {
 

@@ -1,7 +1,7 @@
 package datalayer;
 
-import main.java.datalayerInterface.IAccount;
-import main.java.model.Account;
+import datalayerInterface.IAccount;
+import model.Account;
 
 import java.util.HashSet;
 

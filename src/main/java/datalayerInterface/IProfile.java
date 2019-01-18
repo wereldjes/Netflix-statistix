@@ -1,6 +1,6 @@
 package datalayerInterface;
 
-import main.java.model.Profile;
+import model.Profile;
 
 public interface IProfile {
 
