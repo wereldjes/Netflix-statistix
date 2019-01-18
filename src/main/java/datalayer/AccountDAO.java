@@ -18,7 +18,7 @@ public class AccountDAO implements IAccount {
         return instance;
     }
 
-    @Override
+    @Override @SuppressWarnings("Duplicates")
     public void createAccount(Account a) {
         Connection con = null;
         String query = "INSERT INTO account (`name`, `street_name`, `house_number`, `residence`, `postal_code`)"
@@ -41,7 +41,7 @@ public class AccountDAO implements IAccount {
         }
     }
 
-    @Override
+    @Override @SuppressWarnings("Duplicates")
     public void updateAccount(Account a) {
         Connection con = null;
         String query = "UPDATE account SET name = ?, street_name = ?, house_number = ?, residence = ?, postal_code = ? WHERE account_id = ?";
