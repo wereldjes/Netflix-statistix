@@ -17,6 +17,15 @@ public class Account {
         this.postalCode = postalCode;
     }
 
+    public Account(int accountID, String name, String streetName, String houseNumber, String residence, String postalCode) {
+        this.accountID = accountID;
+        this.name = name;
+        this.streetName = streetName;
+        this.houseNumber = houseNumber;
+        this.residence = residence;
+        this.postalCode = postalCode;
+    }
+
     public String getName() {
         return name;
     }
