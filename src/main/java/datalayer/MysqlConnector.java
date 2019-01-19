@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.util.ResourceBundle;
 
 public class MysqlConnector {
-
+    //resourcebundle takes values from property file so you dont have to hardcode database credentials
     private static ResourceBundle rb = ResourceBundle.getBundle("connector");
     private static MysqlConnector instance;
     private String databaseName = rb.getString("databaseName");
@@ -20,6 +20,7 @@ public class MysqlConnector {
         }
     }
 
+    //Create a connection to the database
     public Connection connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
