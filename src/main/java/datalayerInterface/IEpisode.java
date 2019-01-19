@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IEpisode {
 
-    List getAllEpisodes();
+    List<Episode> getAllEpisodes();
 
-    Episode getEpisodeByName();
+    Episode getEpisodeByName(String title);
 }
