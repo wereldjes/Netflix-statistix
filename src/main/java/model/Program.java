@@ -3,11 +3,11 @@ package model;
 public abstract class Program {
 
     private String title;
-    private int lengthOfTime;
+    private int duration;
 
-    public Program(String title, int lengthOfTime) {
+    public Program(String title, int duration) {
         this.title = title;
-        this.lengthOfTime = lengthOfTime;
+        this.duration = duration;
     }
 
     public String getTitle() {
@@ -18,11 +18,11 @@ public abstract class Program {
         this.title = title;
     }
 
-    public int getLengthOfTime() {
-        return lengthOfTime;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setLengthOfTime(int lengthOfTime) {
-        this.lengthOfTime = lengthOfTime;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

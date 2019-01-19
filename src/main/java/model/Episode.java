@@ -4,8 +4,8 @@ public class Episode extends Program {
 
     private int season;
 
-    public Episode(String title, int lengthOfTime, int season) {
-        super(title, lengthOfTime);
+    public Episode(String title, int duration, int season) {
+        super(title, duration);
         this.season = season;
     }
 
