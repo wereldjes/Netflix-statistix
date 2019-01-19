@@ -35,8 +35,9 @@ public class EpisodeDAO implements IEpisode {
                 String title = rs.getString("title");
                 int duration = rs.getInt("duration");
                 int season = rs.getInt("season");
+                String seriesTitle = rs.getString("series_title");
 
-                Episode e = new Episode(title, duration, season, episodeID);
+                Episode e = new Episode(title, duration, season, episodeID, seriesTitle);
                 allEpisodes.add(e);
             }
 
@@ -63,8 +64,9 @@ public class EpisodeDAO implements IEpisode {
                 String episodeTitle = rs.getString("title");
                 int duration = rs.getInt("duration");
                 int season = rs.getInt("season");
+                String seriesTitle = rs.getString("series_title");
 
-                ep = new Episode(episodeTitle, duration, season, episodeID);
+                ep = new Episode(episodeTitle, duration, season, episodeID, seriesTitle);
             }
 
         } catch(Exception ex) {

@@ -4,14 +4,16 @@ public class Episode extends Program {
 
     private int season;
     private int episodeID;
+    private String seriesTitle;
 
     public Episode(String title, int duration, int season) {
         super(title, duration);
         this.season = season;
     }
 
-    public Episode(String title, int duration, int season, int episodeID) {
+    public Episode(String title, int duration, int season, int episodeID, String seriesTitle) {
         super(title, duration);
+        this.seriesTitle = seriesTitle;
         this.season = season;
         this.episodeID = episodeID;
     }
@@ -30,6 +32,14 @@ public class Episode extends Program {
 
     public void setEpisodeID(int episodeID) {
         this.episodeID = episodeID;
+    }
+
+    public String getSeriesTitle() {
+        return seriesTitle;
+    }
+
+    public void setSeriesTitle(String seriesTitle) {
+        this.seriesTitle = seriesTitle;
     }
 
     @Override

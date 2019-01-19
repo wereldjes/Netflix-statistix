@@ -12,5 +12,5 @@ public interface ISeries {
 
     Series getSeriesByTitle(String title);
 
-    List<Episode> getAllEpisodeBySeries(Series s);
+    List<Episode> getAllEpisodeBySeries(String title);
 }

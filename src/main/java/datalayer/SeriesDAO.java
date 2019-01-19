@@ -7,6 +7,7 @@ import model.Series;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -75,8 +76,32 @@ public class SeriesDAO implements ISeries {
         return s;
     }
 
-    @Override
-    public List<Episode> getAllEpisodeBySeries(Series s) {
-        return null;
+    @Override @SuppressWarnings("Duplicates")
+    public List<Episode> getAllEpisodeBySeries(String title) {
+        Connection con = null;
+        String query = "SELECT * FROM episode INNER JOIN series ON episode.series_title = series.title WHERE series.title = ?";
+        ArrayList<Episode> allSeriesEpisodes = new ArrayList<>();
+
+        try {
+            con = MysqlConnector.getInstance().connect();
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1, title);
+            ResultSet rs = st.executeQuery();
+
+            while(rs.next()) {
+                int episodeID = rs.getInt("episode_id");
+                String episodeName = rs.getString("title");
+                int episodeDuration = rs.getInt("duration");
+                int episodeSeason = rs.getInt("season");
+                String seriesTitle = rs.getString("series_title");
+
+                Episode episode = new Episode(episodeName, episodeDuration, episodeSeason, episodeID, seriesTitle);
+                allSeriesEpisodes.add(episode);
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return allSeriesEpisodes;
     }
 }
