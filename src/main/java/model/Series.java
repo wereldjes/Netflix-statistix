@@ -55,4 +55,9 @@ public class Series {
     public void setSeriesSuggestion(String seriesSuggestion) {
         this.seriesSuggestion = seriesSuggestion;
     }
+
+    @Override
+    public String toString() {
+        return this.title;
+    }
 }
