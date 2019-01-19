@@ -8,12 +8,12 @@ public class Series {
     private int ageIndication;
     private String seriesSuggestion;
 
-    public Series(String title, String genre, String language, int ageIndication, String serieSuggestion) {
+    public Series(String title, String genre, String language, int ageIndication, String seriesSuggestion) {
         this.title = title;
         this.genre = genre;
         this.language = language;
         this.ageIndication = ageIndication;
-        this.seriesSuggestion = serieSuggestion;
+        this.seriesSuggestion = seriesSuggestion;
     }
 
     public String getTitle() {
