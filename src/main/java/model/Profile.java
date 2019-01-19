@@ -54,4 +54,9 @@ public class Profile {
     public void setAccountID(int accountID) {
         this.accountID = accountID;
     }
+
+    @Override
+    public String toString() {
+        return this.profileName;
+    }
 }
