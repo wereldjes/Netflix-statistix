@@ -79,7 +79,7 @@ public class SeriesDAO implements ISeries {
     @Override @SuppressWarnings("Duplicates")
     public List<Episode> getAllEpisodeBySeries(String title) {
         Connection con = null;
-        String query = "SELECT * FROM episode INNER JOIN series ON episode.series_title = series.title WHERE series.title = ?";
+        String query = "SELECT episode.* FROM episode INNER JOIN series ON episode.series_title = series.title WHERE series.title = ?";
         ArrayList<Episode> allSeriesEpisodes = new ArrayList<>();
 
         try {

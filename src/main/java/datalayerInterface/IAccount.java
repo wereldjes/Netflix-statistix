@@ -2,6 +2,8 @@ package datalayerInterface;
 
 import model.Account;
 
+import java.util.List;
+
 public interface IAccount {
 
     void createAccount(Account a);
@@ -11,4 +13,6 @@ public interface IAccount {
     void deleteAccount(Account a);
 
     Account getAccountByUsername(String username);
+
+    List<Account> getAccountsWithOneProfile();
 }

@@ -6,6 +6,8 @@ import model.Account;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountDAO implements IAccount {
 
@@ -84,7 +86,7 @@ public class AccountDAO implements IAccount {
 
     }
 
-    @Override
+    @Override @SuppressWarnings("Duplicates")
     public Account getAccountByUsername(String username) {
         Connection con = null;
         Account a = null;
@@ -94,15 +96,15 @@ public class AccountDAO implements IAccount {
             con = MysqlConnector.getInstance().connect();
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, username);
-            ResultSet resultSet = st.executeQuery();
+            ResultSet rs = st.executeQuery();
 
-            while(resultSet.next()){
-                int id = resultSet.getInt("account_id");
-                String name = resultSet.getString("name");
-                String streetName = resultSet.getString("street_name");
-                String houseNumber = resultSet.getString("house_number");
-                String residence = resultSet.getString("residence");
-                String postalCode = resultSet.getString("postal_code");
+            while(rs.next()){
+                int id = rs.getInt("account_id");
+                String name = rs.getString("name");
+                String streetName = rs.getString("street_name");
+                String houseNumber = rs.getString("house_number");
+                String residence = rs.getString("residence");
+                String postalCode = rs.getString("postal_code");
 
                 a = new Account(id, name, streetName, houseNumber, residence, postalCode);
             }
@@ -110,5 +112,35 @@ public class AccountDAO implements IAccount {
             e.printStackTrace();
         }
         return a;
+    }
+
+    @Override @SuppressWarnings("Duplicates")
+    public List<Account> getAccountsWithOneProfile() {
+        Connection con = null;
+        String query = "SELECT account.*, COUNT(*) count FROM account INNER JOIN profile ON profile.account_id = account.account_id"
+                     + "GROUP BY account.account_id HAVING count = 1";
+        ArrayList<Account> oneProfileAccounts = new ArrayList<>();
+
+        try {
+            con = MysqlConnector.getInstance().connect();
+            PreparedStatement st = con.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+
+            while(rs.next()){
+                int id = rs.getInt("account_id");
+                String name = rs.getString("name");
+                String streetName = rs.getString("street_name");
+                String houseNumber = rs.getString("house_number");
+                String residence = rs.getString("residence");
+                String postalCode = rs.getString("postal_code");
+
+                Account account = new Account(id, name, streetName, houseNumber, residence, postalCode);
+                oneProfileAccounts.add(account);
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return oneProfileAccounts;
     }
 }
