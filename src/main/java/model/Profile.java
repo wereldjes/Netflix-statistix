@@ -1,18 +1,26 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Profile {
 
     private String profileName;
-    private LocalDateTime age;
+    private LocalDate age;
     private int profileID;
+    private int accountID;
     // Arraylist to keep track of watched series/movies ?
 
-    public Profile(String profileName, LocalDateTime age, int profileID) {
+    public Profile(String profileName, LocalDate age,int accountID, int profileID) {
+        this.accountID = accountID;
         this.profileID = profileID;
         this.profileName = profileName;
         this.age = age;
+    }
+
+    public Profile(String profileName, LocalDate age, int accountID) {
+        this.profileName = profileName;
+        this.age = age;
+        this.accountID = accountID;
     }
 
     public String getProfileName() {
@@ -23,11 +31,11 @@ public class Profile {
         this.profileName = profileName;
     }
 
-    public LocalDateTime getAge() {
+    public LocalDate getAge() {
         return age;
     }
 
-    public void setAge(LocalDateTime age) {
+    public void setAge(LocalDate age) {
         this.age = age;
     }
 
@@ -37,5 +45,13 @@ public class Profile {
 
     public void setProfileID(int profileID) {
         this.profileID = profileID;
+    }
+
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 }
