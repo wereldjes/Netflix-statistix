@@ -118,7 +118,7 @@ public class AccountDAO implements IAccount {
     public List<Account> getAccountsWithOneProfile() {
         Connection con = null;
         String query = "SELECT account.*, COUNT(*) count FROM account INNER JOIN profile ON profile.account_id = account.account_id"
-                     + "GROUP BY account.account_id HAVING count = 1";
+                     + " GROUP BY account.account_id HAVING count = 1";
         ArrayList<Account> oneProfileAccounts = new ArrayList<>();
 
         try {
