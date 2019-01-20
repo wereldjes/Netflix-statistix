@@ -9,4 +9,6 @@ public interface IMovie {
     Movie getMovieByTitle(String title);
 
     HashSet<Movie> getAllMovies();
+
+    Movie getLongestMovieUnderSixteen();
 }

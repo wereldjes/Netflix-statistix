@@ -32,7 +32,7 @@ public class MovieDAO implements IMovie {
 
             while(rs.next()){
                 int movieID = rs.getInt("movie_id");
-                String movieTitle = rs.getString("name");
+                String movieTitle = rs.getString("title");
                 String language = rs.getString("language");
                 int duration = rs.getInt("duration");
                 String genre = rs.getString("genre");
@@ -59,7 +59,7 @@ public class MovieDAO implements IMovie {
 
             while(rs.next()) {
                 int movieID = rs.getInt("movie_id");
-                String movieTitle = rs.getString("name");
+                String movieTitle = rs.getString("title");
                 String language = rs.getString("language");
                 int duration = rs.getInt("duration");
                 String genre = rs.getString("genre");
@@ -74,4 +74,34 @@ public class MovieDAO implements IMovie {
         }
         return allMovies;
     }
+
+    @Override @SuppressWarnings("Duplicates")
+    public Movie getLongestMovieUnderSixteen() {
+        Connection con = null;
+        Movie m = null;
+        String query = "SELECT * FROM movie WHERE duration = (SELECT MAX(duration) FROM movie WHERE age_indication < 16)";
+
+        try {
+            con = MysqlConnector.getInstance().connect();
+            PreparedStatement st = con.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+
+            while(rs.next()) {
+                int movieID = rs.getInt("movie_id");
+                String movieTitle = rs.getString("title");
+                String language = rs.getString("language");
+                int duration = rs.getInt("duration");
+                String genre = rs.getString("genre");
+                int ageIndication = rs.getInt("age_indication");
+
+                m = new Movie(movieTitle, duration, genre, language, ageIndication, movieID);
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return m;
+    }
+
+
 }
