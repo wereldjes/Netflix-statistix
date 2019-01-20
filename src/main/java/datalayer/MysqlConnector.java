@@ -14,10 +14,9 @@ public class MysqlConnector {
 
     public static MysqlConnector getInstance() {
         if(instance == null) {
-            return new MysqlConnector();
-        } else {
-            return instance;
+            instance = new MysqlConnector();
         }
+        return instance;
     }
 
     //Create a connection to the database
