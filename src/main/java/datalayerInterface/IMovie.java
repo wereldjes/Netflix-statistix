@@ -4,6 +4,7 @@ import model.Movie;
 import model.Profile;
 
 import java.util.HashSet;
+import java.util.List;
 
 public interface IMovie {
 
@@ -20,4 +21,8 @@ public interface IMovie {
     void deleteWatchedPercentage(Movie m, Profile p);
 
     int getWatchedPercentage(Movie m, Profile p);
+
+    List<Movie> getWatchedMoviesByProfile(Profile p);
+
+    int getMovieWatchCount(Movie m);
 }

@@ -7,7 +7,9 @@ import model.Profile;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class MovieDAO implements IMovie {
     private static MovieDAO instance;
@@ -177,5 +179,57 @@ public class MovieDAO implements IMovie {
             e.printStackTrace();
         }
         return watchedPercentage;
+    }
+
+    @Override @SuppressWarnings("Duplicates")
+    public List<Movie> getWatchedMoviesByProfile(Profile p) {
+        Connection con = null;
+        ArrayList<Movie> watchedMovieByProfile = new ArrayList<>();
+        String query = "SELECT movie.* FROM movie JOIN watched ON watched.movie_id = movie.movie_id WHERE profile_id = ? ";
+
+        try {
+            con = MysqlConnector.getInstance().connect();
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, p.getProfileID());
+            ResultSet rs = st.executeQuery();
+
+            while(rs.next()){
+                int movieID = rs.getInt("movie_id");
+                String movieTitle = rs.getString("title");
+                String language = rs.getString("language");
+                int duration = rs.getInt("duration");
+                String genre = rs.getString("genre");
+                int ageIndication = rs.getInt("age_indication");
+
+                Movie m = new Movie(movieTitle, duration, genre, language, ageIndication, movieID);
+                watchedMovieByProfile.add(m);
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return watchedMovieByProfile;
+    }
+
+    @Override
+    public int getMovieWatchCount(Movie m) {
+        Connection con = null;
+        int watchCount = 0;
+        String query = "SELECT COUNT(watched.movieID) AS count FROM watched WHERE watched_percentage = 100 AND movie_id = ?";
+
+        try {
+            con = MysqlConnector.getInstance().connect();
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, m.getMovieID());
+            ResultSet rs = st.executeQuery();
+
+            while(rs.next()){
+                watchCount = rs.getInt("count");
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return watchCount;
     }
 }
